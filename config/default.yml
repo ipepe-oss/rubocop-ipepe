@@ -1,0 +1,23 @@
+Ipepe/TestOperator:
+  Description: 'TODO: Write a description of the cop.'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
+Ipepe:
+  Enabled: true
+  DocumentationBaseURL: "https://github.com/ipepe-oss/rubocop-ipepe"
+
+Ipepe/TernaryOperator:
+  Enabled: true
+  Description: "Prefer explicit if over ternary operator"
+  VersionAdded: '0.1.0'
+
+Ipepe/MultipleConditionUnless:
+  Description: "`unless` with multiple conditions is not allowed"
+  Enabled: true
+  VersionAdded: '0.1.0'
+  EnforcedStyle: 'allow_single'
+  SupportedStyles:
+    - 'allow_single_condition'
+    - 'never_unless'
+

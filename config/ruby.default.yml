@@ -1,0 +1,64 @@
+AllCops:
+  DisabledByDefault: false
+  SuggestExtensions: false
+  NewCops: enable
+Style/MixinUsage:
+  Exclude:
+    - 'bin/*'
+Style/FetchEnvVar:
+  Enabled: false
+Style/RedundantConstantBase:
+  Enabled: false
+Style/HashSyntax:
+  Enabled: true
+  EnforcedShorthandSyntax: never
+Style/NumericPredicate:
+  EnforcedStyle: comparison
+Style/ZeroLengthPredicate:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: never
+Style/Documentation:
+  Enabled: false
+Layout/LineLength:
+  Max: 100
+Metrics/BlockLength:
+  Exclude:
+    - "*.rake"
+Metrics/AbcSize:
+  Max: 25
+Metrics/CyclomaticComplexity:
+  Max: 15
+Metrics/ParameterLists:
+  Max: 6
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/MultilineBlockChain:
+  Enabled: false
+Style/NegatedIf:
+  EnforcedStyle: postfix
+Layout/DotPosition:
+  EnforcedStyle: trailing
+  Enabled: true
+Metrics/MethodLength:
+  Max: 20
+Style/DoubleNegation:
+  Enabled: false
+Style/WordArray:
+  EnforcedStyle: brackets
+Style/SymbolArray:
+  EnforcedStyle: brackets
+Style/CommentedKeyword:
+  Enabled: false
