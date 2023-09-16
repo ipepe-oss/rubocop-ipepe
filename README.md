@@ -1,36 +1,110 @@
-# Rubocop::Ipepe
+# RuboCop Ipepe
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rubocop/ipepe`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Gem Version](https://badge.fury.io/rb/rubocop-ipepe.svg)](https://rubygems.org/gems/rubocop-ipepe)
+![CI](https://github.com/ipepe-oss/rubocop-ipepe/workflows/CI/badge.svg)
 
-TODO: Delete this and the text above, and describe your gem
+[RuboCop](https://github.com/rubocop/rubocop).
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Just install the `rubocop-ipepe` gem
+
+```bash
+gem install rubocop-ipepe
+```
+
+or if you use bundler put this in your `Gemfile`
 
 ```ruby
 gem 'rubocop-ipepe', require: false
 ```
 
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install rubocop-ipepe
-
 ## Usage
 
-TODO: Write usage instructions here
+You need to tell RuboCop to load the Ipepe extension. There are three
+ways to do this:
 
-## Development
+### RuboCop configuration file
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Put this into your `.rubocop.yml`.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```yaml
+require: rubocop-ipepe
+```
 
-## Contributing
+Alternatively, use the following array notation when specifying multiple extensions.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rubocop-ipepe.
+```yaml
+require:
+  - rubocop-other-extension
+  - rubocop-ipepe
+```
 
+Now you can run `rubocop` and it will automatically load the RuboCop Ipepe
+cops together with the standard cops.
+
+### Command line
+
+```bash
+rubocop --require rubocop-ipepe
+```
+
+### Rake task
+
+```ruby
+RuboCop::RakeTask.new do |task|
+  task.requires << 'rubocop-ipepe'
+end
+```
+
+## The Cops
+
+All cops are located under
+[`lib/rubocop/cop/ipepe`](lib/rubocop/cop/ipepe), and contain
+examples/documentation.
+
+In your `.rubocop.yml`, you may treat the Ipepe cops just like any other
+cop. For example:
+
+```yaml
+Ipepe/SpecificMatcher:
+  Exclude:
+    - spec/my_spec.rb
+```
+
+### Ipepe/MultipleConditionUnless
+
+Checks for multiple conditions in `unless` statement.
+
+```ruby
+# bad
+unless foo && bar
+  do_something
+end
+
+# good
+if foo || bar
+  do_something
+end
+```
+
+### Ipepe/TernaryOperator
+
+Prohibits any use of ternary operator.
+
+```ruby
+# bad
+foo ? bar : baz
+
+# good
+if foo
+  bar
+else
+  baz
+end
+```
+
+## License
+
+`rubocop-ipepe` is MIT licensed. [See the accompanying file](LICENSE.md) for
+the full text.
