@@ -7,3 +7,5 @@ gem "minitest", "~> 5.0"
 gem "rake", "~> 12.0"
 gem "rspec"
 gem "rubocop"
+gem "simplecov"
+

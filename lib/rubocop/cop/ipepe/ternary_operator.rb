@@ -61,12 +61,6 @@ module RuboCop
             )
           end
         end
-
-        private
-
-        def ternary_operator?(node)
-          node.if_type? && node.else? && node.ternary?
-        end
       end
     end
   end

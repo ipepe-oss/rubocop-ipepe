@@ -1,3 +1,9 @@
+require "simplecov"
+
+SimpleCov.start do
+  add_filter "lib/rubocop/ipepe/version.rb"
+end
+
 require "rubocop-ipepe"
 require "rubocop/rspec/support"
 
