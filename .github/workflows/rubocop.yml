@@ -32,6 +32,15 @@ jobs:
         with:
           ruby-version: 2.4
 
+      - name: Remove Gemfile.lock
+        run: rm -f Gemfile.lock
+
+      - name: Set ruby 2.4 version in Gemfile
+        run: echo "ruby '~> 2.4'" > Gemfile
+
+      - name: Bundle install
+        run: bundle install
+
       # This step is not necessary if you add the gem to your Gemfile
       - name: Update rubocop version
         run: bundle update rubocop
