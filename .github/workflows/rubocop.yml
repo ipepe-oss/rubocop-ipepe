@@ -32,9 +32,6 @@ jobs:
         with:
           ruby-version: 2.4
 
-      - name: Remove Gemfile.lock
-        run: rm -f Gemfile.lock
-
       - name: Set ruby 2.4 version in Gemfile
         run: echo "ruby '~> 2.4'" > Gemfile
 
