@@ -4,7 +4,10 @@ require "json"
 
 File.read("coverage/.last_run.json").tap do |json|
   data = JSON.parse(json)
-  coverage = data.dig("result", "line").to_f
+  coverage = [
+    data.dig("result", "covered_percent").to_f,
+    data.dig("result", "line").to_f
+  ].max
   puts "Coverage: #{coverage}%"
   if coverage < 100
     puts "Coverage is below 100%! Exiting with error."
