@@ -2,7 +2,7 @@ AllCops:
   DisabledByDefault: false
   SuggestExtensions: false
   NewCops: enable
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
 Naming/FileName:
   Exclude:

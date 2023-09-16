@@ -3,8 +3,8 @@ require "spec_helper"
 RSpec.describe RuboCop::Cop::Ipepe::TernaryOperator, :config do
   let(:config) do
     RuboCop::Config.new("AllCops" => {
-      "DisplayCopNames" => true
-    })
+                          "DisplayCopNames" => true
+                        })
   end
   let(:good_code) do
     "if true\n1\nelse\n2\nend"

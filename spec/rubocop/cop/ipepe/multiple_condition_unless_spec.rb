@@ -3,8 +3,8 @@ require "spec_helper"
 RSpec.describe RuboCop::Cop::Ipepe::MultipleConditionUnless, :config do
   let(:config) do
     RuboCop::Config.new("AllCops" => {
-      "DisplayCopNames" => true
-    })
+                          "DisplayCopNames" => true
+                        })
   end
   context "with return" do
     let(:passing_code) do
