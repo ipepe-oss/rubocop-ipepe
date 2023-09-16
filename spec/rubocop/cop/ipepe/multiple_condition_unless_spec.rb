@@ -1,7 +1,11 @@
 require "spec_helper"
 
 RSpec.describe RuboCop::Cop::Ipepe::MultipleConditionUnless, :config do
-  let(:config) { RuboCop::Config.new }
+  let(:config) do
+    RuboCop::Config.new("AllCops" => {
+                          "DisplayCopNames" => true
+                        })
+  end
   context "with return" do
     let(:passing_code) do
       <<~RUBY
