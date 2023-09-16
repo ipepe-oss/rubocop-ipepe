@@ -3,24 +3,16 @@ require "spec_helper"
 RSpec.describe RuboCop::Cop::Ipepe::TernaryOperator, :config do
   let(:config) { RuboCop::Config.new }
   let(:good_code) do
-    <<~RUBY
-      if true
-        1
-        else
-        2
-      end
-    RUBY
+    "if true\n1\nelse\n2\nend"
   end
   let(:bad_code) do
-    <<~RUBY
-      true ? 1 : 2
-    RUBY
+    "true ? 1 : 2"
   end
 
   it "registers an offense when using ternary operator" do
     expect_offense(<<~RUBY)
-      bad_method
-      ^^^^^^^^^^ Use `#good_method` instead of `#bad_method`.
+      true ? 1 : 2
+      ^^^^^^^^^^^^ Ipepe/TernaryOperator: Use `if` instead of ternary operator.
     RUBY
   end
 

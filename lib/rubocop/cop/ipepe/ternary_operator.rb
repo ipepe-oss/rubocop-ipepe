@@ -49,7 +49,16 @@ module RuboCop
           return unless node.ternary?
 
           add_offense(node) do |corrector|
-            corrector.replace(node, "if #{node.condition.source}\n#{node.if_branch.source}\nend")
+            corrector.replace(
+              node,
+              [
+                "if #{node.condition.source}",
+                node.if_branch.source,
+                "else",
+                node.else_branch.source,
+                "end"
+              ].join("\n")
+            )
           end
         end
 
