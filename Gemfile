@@ -8,3 +8,5 @@ gem "rspec"
 gem "rubocop"
 gem "simplecov"
 
+
+gem "code-scanning-rubocop", "~> 0.6.1"

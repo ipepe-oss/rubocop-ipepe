@@ -25,25 +25,8 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
-          ruby-version: 2.4
+          ruby-version: 2.7
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-
-      - name: Set ruby 2.4 version in Gemfile
-        run: echo "ruby '~> 2.4'" > Gemfile
-
-      - name: Bundle install
-        run: bundle install
-
-      # This step is not necessary if you add the gem to your Gemfile
-      - name: Update rubocop version
-        run: bundle update rubocop
-
-      # This step is not necessary if you add the gem to your Gemfile
-      - name: Install Code Scanning integration
-        run: bundle add code-scanning-rubocop
-
-      - name: Install dependencies
-        run: bundle install
 
       - name: Rubocop run
         run: |
