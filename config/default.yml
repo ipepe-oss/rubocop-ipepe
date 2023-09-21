@@ -26,8 +26,9 @@ Ipepe/AlphabeticalHashKeys:
   Description: 'Ensure that hash keys are in alphabetical order'
   Enabled: true
   VersionAdded: '0.2.0'
-  EnforcedStyle: 'symbols_only'
-  SupportedStyles:
-    - 'symbols_only'
-    - 'strings_only'
-    - 'symbols_and_strings'
+# TODO: implement
+#  EnforcedStyle: 'symbols_only'
+#  SupportedStyles:
+#    - 'symbols_only'
+#    - 'strings_only'
+#    - 'symbols_and_strings'

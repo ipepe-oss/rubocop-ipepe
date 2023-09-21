@@ -3,8 +3,7 @@ require "spec_helper"
 RSpec.describe RuboCop::Cop::Ipepe::AlphabeticalHashKeys, :config do
   let(:config) do
     RuboCop::Config.new("AllCops" => {
-                          "DisplayCopNames" => true,
-                          "TargetRubyVersion" => "2.4"
+                          "DisplayCopNames" => true
                         })
   end
   context "with string keys" do

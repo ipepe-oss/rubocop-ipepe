@@ -4,14 +4,11 @@ module RuboCop
       class AlphabeticalHashKeys < ::RuboCop::Cop::Base
         extend AutoCorrector
         MSG = "Ensure that keys in hash are in alphabetical order".freeze
-        # SupportedStyles: ['symbols_only', 'strings_only', 'symbols_and_strings']
-        include ConfigurableEnforcedStyle
 
         def on_hash(node)
           keys = node.children.select(&:pair_type?).map(&:key)
           sorted_keys = keys.sort_by(&:value)
-
-          return if keys == sorted_keys
+          return if cop_not_applicable?(keys, sorted_keys)
 
           add_offense(node) do |corrector|
             join_keys_with = " "
@@ -30,6 +27,13 @@ module RuboCop
 
         private
 
+        def cop_not_applicable?(keys, sorted_keys)
+          keys.empty? ||
+            keys.one? ||
+            (keys.none?(&:str_type?) && keys.none?(&:sym_type?)) ||
+            keys == sorted_keys
+        end
+
         def sorted_keypairs(node, sorted_keys)
           sorted_keys.map do |k|
             keypair = node.children.find { |n| n.key == k }
@@ -37,8 +41,6 @@ module RuboCop
               "#{keypair.key.source} => #{keypair.value.source}"
             elsif keypair.key.sym_type?
               "#{keypair.key.source}: #{keypair.value.source}"
-            else
-              raise "Unknown key type: #{keypair.key.type}"
             end
           end
         end
