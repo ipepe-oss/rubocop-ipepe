@@ -1,8 +1,3 @@
-Ipepe/TestOperator:
-  Description: 'TODO: Write a description of the cop.'
-  Enabled: pending
-  VersionAdded: '<<next>>'
-
 Ipepe:
   Enabled: true
   DocumentationBaseURL: "https://github.com/ipepe-oss/rubocop-ipepe"
@@ -21,3 +16,7 @@ Ipepe/MultipleConditionUnless:
     - 'allow_single_condition'
     - 'never_unless'
 
+Ipepe/AlphabeticalArrayOfStrings:
+  Description: 'Ensure that strings in array are in alphabetical order'
+  Enabled: true
+  VersionAdded: '0.2.0'
