@@ -104,6 +104,11 @@ else
 end
 ```
 
+## Development
+
+### Adding a new cop
+`bundle exec rake 'new_cop[Ipepe/TestOperator]'`
+
 ## License
 
 `rubocop-ipepe` is MIT licensed. [See the accompanying file](LICENSE.md) for

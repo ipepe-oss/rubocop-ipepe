@@ -12,11 +12,6 @@ RSpec.describe RuboCop::Cop::Ipepe::MultipleConditionUnless, :config do
         return unless 1 == 2
       RUBY
     end
-    let(:good_code) do
-      <<~RUBY
-        return if !(1 == 2 && 3 != 4)
-      RUBY
-    end
     let(:bad_code) do
       <<~RUBY
         return unless 1 == 2 && 3 != 4
@@ -43,13 +38,6 @@ RSpec.describe RuboCop::Cop::Ipepe::MultipleConditionUnless, :config do
     let(:passing_code) do
       <<~RUBY
         unless 1 == 2
-          puts "hello"
-        end
-      RUBY
-    end
-    let(:good_code) do
-      <<~RUBY
-        if !(1 == 2 && 3 != 4)
           puts "hello"
         end
       RUBY
