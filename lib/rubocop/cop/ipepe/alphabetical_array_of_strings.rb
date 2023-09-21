@@ -1,7 +1,7 @@
 module RuboCop
   module Cop
     module Ipepe
-      class AlphabeticalArrayOfStrings < Base
+      class AlphabeticalArrayOfStrings < ::RuboCop::Cop::Base
         extend AutoCorrector
         MSG = "Ensure that strings in array are in alphabetical order".freeze
 
