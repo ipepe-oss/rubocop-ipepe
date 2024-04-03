@@ -25,6 +25,13 @@ RSpec.describe RuboCop::Cop::Ipepe::AlphabeticalHashKeys, :config do
       RUBY
     end
 
+    it "registers an offense when using mixed keys" do
+      expect_offense <<~RUBY
+        { "b" => 2, "a" => 1, c: 3 }
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Ipepe/AlphabeticalHashKeys: Ensure that keys in hash are in alphabetical order
+      RUBY
+    end
+
     it "does not register an offense for good_code" do
       expect_no_offenses(good_code)
     end

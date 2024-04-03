@@ -7,7 +7,7 @@ module RuboCop
 
         def on_hash(node)
           keys = node.children.select(&:pair_type?).map(&:key)
-          sorted_keys = keys.sort_by(&:value)
+          sorted_keys = keys.sort_by { |k| k.value.to_s }
           return if cop_not_applicable?(keys, sorted_keys)
 
           add_offense(node) do |corrector|
