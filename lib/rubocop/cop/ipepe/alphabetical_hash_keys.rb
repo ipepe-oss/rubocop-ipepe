@@ -12,8 +12,6 @@ module RuboCop
               k.value.to_s
             elsif k.respond_to?(:const_name)
               k.const_name.to_s
-            else
-              k.to_s
             end
           end
           return if cop_not_applicable?(keys, sorted_keys)
