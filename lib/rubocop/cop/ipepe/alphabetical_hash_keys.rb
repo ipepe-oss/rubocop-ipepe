@@ -5,15 +5,18 @@ module RuboCop
         extend AutoCorrector
         MSG = "Ensure that keys in hash are in alphabetical order".freeze
 
-        def on_hash(node)
+        def on_hash(node) # rubocop:disable Metrics/MethodLength, Metrics/PerceivedComplexity
           keys = node.children.select(&:pair_type?).map(&:key)
           sorted_keys = keys.sort_by do |k|
             if k.respond_to?(:value)
               k.value.to_s
+            elsif k.respond_to?(:const_name)
+              k.const_name.to_s
             else
               k.to_s
             end
           end
+          puts "keys: #{keys}, sorted_keys: #{sorted_keys}"
           return if cop_not_applicable?(keys, sorted_keys)
 
           add_offense(node) do |corrector|
@@ -23,10 +26,10 @@ module RuboCop
             corrector.replace(
               node,
               [
-                "{",
+                ("{" if node.source.start_with?("{")),
                 sorted_keypairs(node, sorted_keys).join(",#{join_keys_with}"),
-                "}"
-              ].join(join_keys_with)
+                ("}" if node.source.end_with?("}"))
+              ].compact.join(join_keys_with)
             )
           end
         end
@@ -43,10 +46,10 @@ module RuboCop
         def sorted_keypairs(node, sorted_keys)
           sorted_keys.map do |k|
             keypair = node.children.find { |n| n.key == k }
-            if keypair.key.str_type?
-              "#{keypair.key.source} => #{keypair.value.source}"
-            elsif keypair.key.sym_type?
+            if keypair.key.sym_type?
               "#{keypair.key.source}: #{keypair.value.source}"
+            else
+              "#{keypair.key.source} => #{keypair.value.source}"
             end
           end
         end

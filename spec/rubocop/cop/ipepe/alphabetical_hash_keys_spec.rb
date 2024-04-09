@@ -34,9 +34,15 @@ RSpec.describe RuboCop::Cop::Ipepe::AlphabeticalHashKeys, :config do
 
     it "registers an offense when using class as keys" do
       expect_offense <<~RUBY
-        { Category => 1, "a" => 1, c: 3 }
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Ipepe/AlphabeticalHashKeys: Ensure that keys in hash are in alphabetical order
+        { B => 2, A => 1, c: 3 }
+        ^^^^^^^^^^^^^^^^^^^^^^^^ Ipepe/AlphabeticalHashKeys: Ensure that keys in hash are in alphabetical order
       RUBY
+
+      expect(
+        autocorrect_source("{ B => 2, A => 1, c: 3 }")
+      ).to eq(
+        "{ A => 1, B => 2, c: 3 }"
+      )
     end
 
     it "does not register an offense for good_code" do
