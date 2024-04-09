@@ -16,7 +16,6 @@ module RuboCop
               k.to_s
             end
           end
-          puts "keys: #{keys}, sorted_keys: #{sorted_keys}"
           return if cop_not_applicable?(keys, sorted_keys)
 
           add_offense(node) do |corrector|
@@ -36,10 +35,10 @@ module RuboCop
 
         private
 
-        def cop_not_applicable?(keys, sorted_keys)
+        def cop_not_applicable?(keys, sorted_keys) # rubocop:disable Metrics/PerceivedComplexity
           keys.empty? ||
             keys.one? ||
-            (keys.none?(&:str_type?) && keys.none?(&:sym_type?)) ||
+            (keys.none?(&:str_type?) && keys.none?(&:sym_type?) && keys.none?(&:const_type?)) ||
             keys == sorted_keys
         end
 
