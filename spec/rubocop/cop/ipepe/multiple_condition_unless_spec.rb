@@ -67,4 +67,24 @@ RSpec.describe RuboCop::Cop::Ipepe::MultipleConditionUnless, :config do
       expect(autocorrect_source(bad_code)).to eq("if !(1 == 2 && 3 != 4)\nputs \"hello\"\nend\n")
     end
   end
+
+  context "with else branch" do
+    let(:bad_code) do
+      <<~RUBY
+        unless 1 == 2 && 3 != 4
+          puts "hello"
+        else
+          puts "bye"
+        end
+      RUBY
+    end
+
+    it "autocorrects bad_code and keeps else branch" do
+      expect(
+        autocorrect_source(bad_code)
+      ).to eq(
+        "if !(1 == 2 && 3 != 4)\nputs \"hello\"\nelse\nputs \"bye\"\nend\n"
+      )
+    end
+  end
 end
