@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rubocop-ipepe (0.2.5)
+    rubocop-ipepe (0.3.0)
       rubocop (>= 1.0)
 
 GEM
