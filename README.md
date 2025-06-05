@@ -83,7 +83,7 @@ unless foo && bar
 end
 
 # good
-if foo || bar
+if !(foo && bar)
   do_something
 end
 ```
