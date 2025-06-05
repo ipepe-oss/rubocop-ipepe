@@ -2,7 +2,7 @@ module RuboCop
   module Cop
     module Ipepe
       class RspecChangeFromToNotBy < ::RuboCop::Cop::Base
-        MSG = 'Prefer `change { }.from().to()` over `change { }.by()`'.freeze
+        MSG = "Prefer `change { }.from().to()` over `change { }.by()`".freeze
 
         def on_send(node)
           return unless change_by?(node)
@@ -17,7 +17,7 @@ module RuboCop
 
           receiver = node.receiver
           receiver = receiver.send_node if receiver&.block_type?
-          receiver&.send_type? && receiver.method?(:change)
+          receiver&.send_type? && receiver&.method?(:change)
         end
       end
     end

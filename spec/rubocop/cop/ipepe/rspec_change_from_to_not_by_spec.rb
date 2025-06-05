@@ -8,14 +8,14 @@ RSpec.describe RuboCop::Cop::Ipepe::RspecChangeFromToNotBy, :config do
   end
 
   it "registers an offense when using change.by" do
-    expect_offense(<<~RUBY, prefix: ' ' * 19)
+    expect_offense(<<~RUBY, prefix: " " * 19)
       expect { test }.to change { count }.by(1)
       _{prefix}^^^^^^^^^^^^^^^^^^^^^^ Ipepe/RspecChangeFromToNotBy: Prefer `change { }.from().to()` over `change { }.by()`
     RUBY
   end
 
   it "registers an offense with not_to" do
-    expect_offense(<<~RUBY, prefix: ' ' * 23)
+    expect_offense(<<~RUBY, prefix: " " * 23)
       expect { test }.not_to change { count }.by(1)
       _{prefix}^^^^^^^^^^^^^^^^^^^^^^ Ipepe/RspecChangeFromToNotBy: Prefer `change { }.from().to()` over `change { }.by()`
     RUBY
