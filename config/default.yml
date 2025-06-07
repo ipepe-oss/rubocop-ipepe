@@ -33,6 +33,9 @@ Ipepe/AlphabeticalHashKeys:
 #    - 'strings_only'
 #    - 'symbols_and_strings'
 
+Ipepe/InstanceVariableUsage:
+  Enabled: true
+
 Ipepe/RspecChangeFromToNotBy:
   Description: 'Prefer `change { }.from().to()` over `change { }.by()`'
   Enabled: true
