@@ -35,6 +35,9 @@ Ipepe/AlphabeticalHashKeys:
 
 Ipepe/InstanceVariableUsage:
   Enabled: true
+  IncludedPaths:
+    - 'app/services/**/*.rb'
+  ExcludedPaths: []
 
 Ipepe/RspecChangeFromToNotBy:
   Description: 'Prefer `change { }.from().to()` over `change { }.by()`'
