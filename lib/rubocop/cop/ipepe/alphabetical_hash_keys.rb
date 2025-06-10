@@ -5,7 +5,7 @@ module RuboCop
         extend AutoCorrector
         MSG = "Ensure that keys in hash are in alphabetical order".freeze
 
-        def on_hash(node) # rubocop:disable Metrics/MethodLength, Metrics/PerceivedComplexity
+        def on_hash(node) # rubocop:disable Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/AbcSize
           keys = node.children.select(&:pair_type?).map(&:key)
           sorted_keys = keys.sort_by do |k|
             if k.respond_to?(:value)
