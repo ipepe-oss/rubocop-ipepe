@@ -9,7 +9,7 @@ RSpec.describe RuboCop::Cop::Ipepe::ServiceInstanceVariables do
   end
 
   def cop(include_path = "app/services/**/*.rb")
-    @cop ||= described_class.new(config(include_path))
+    described_class.new(config(include_path))
   end
 
   it "registers an offense for instance variable outside initialize and call" do
@@ -56,7 +56,9 @@ RSpec.describe RuboCop::Cop::Ipepe::ServiceInstanceVariables do
   end
 
   it "allows configuring additional paths" do
-    @cop = described_class.new(config("app/models/**/*.rb"))
+    def cop
+      described_class.new(config("app/models/**/*.rb"))
+    end
     expect_offense(<<~RUBY, "app/models/test_service.rb")
       class TestService
         def other
