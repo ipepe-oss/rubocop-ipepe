@@ -42,3 +42,5 @@ Ipepe/ServiceInstanceVariables:
   Description: 'Instance variables in services are only allowed in #initialize and #call'
   Enabled: true
   VersionAdded: '0.4.0'
+  Include:
+    - 'app/services/**/*.rb'
