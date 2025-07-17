@@ -33,6 +33,11 @@ Ipepe/AlphabeticalHashKeys:
 #    - 'strings_only'
 #    - 'symbols_and_strings'
 
+Ipepe/RailsNonStandardActions:
+  Description: 'Non-standard Rails actions should be defined as sub-controllers'
+  Enabled: true
+  VersionAdded: '0.4.0'
+
 Ipepe/RspecChangeFromToNotBy:
   Description: 'Prefer `change { }.from().to()` over `change { }.by()`'
   Enabled: true
