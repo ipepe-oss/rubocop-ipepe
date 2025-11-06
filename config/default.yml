@@ -37,3 +37,8 @@ Ipepe/RspecChangeFromToNotBy:
   Description: 'Prefer `change { }.from().to()` over `change { }.by()`'
   Enabled: true
   VersionAdded: '0.3.0'
+
+Ipepe/RspecDescribeClass:
+  Description: 'RSpec top-level describe blocks should specify a class constant, not a string. This helps with rspec-big-infer.'
+  Enabled: true
+  VersionAdded: '0.4.0'
