@@ -12,7 +12,7 @@ RSpec.describe RuboCop::Cop::Ipepe::RspecDescribeClass, :config do
   it "registers an offense when describe uses a string" do
     expect_offense(<<~RUBY)
       describe "MyClass" do
-               ^^^^^^^^^^ Ipepe/RspecDescribeClass: RSpec top-level `describe` should specify a class constant, not a string. This helps with rspec-big-infer.
+               ^^^^^^^^^ Ipepe/RspecDescribeClass: RSpec top-level `describe` should specify a class constant, not a string. This helps with rspec-big-infer.
       end
     RUBY
   end
@@ -60,7 +60,7 @@ RSpec.describe RuboCop::Cop::Ipepe::RspecDescribeClass, :config do
   it "registers an offense for top-level describe with string even with nested blocks" do
     expect_offense(<<~RUBY)
       describe "MyClass" do
-               ^^^^^^^^^^ Ipepe/RspecDescribeClass: RSpec top-level `describe` should specify a class constant, not a string. This helps with rspec-big-infer.
+               ^^^^^^^^^ Ipepe/RspecDescribeClass: RSpec top-level `describe` should specify a class constant, not a string. This helps with rspec-big-infer.
         context "nested" do
         end
       end
