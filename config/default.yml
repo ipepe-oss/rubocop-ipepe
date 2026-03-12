@@ -37,3 +37,8 @@ Ipepe/RspecChangeFromToNotBy:
   Description: 'Prefer `change { }.from().to()` over `change { }.by()`'
   Enabled: true
   VersionAdded: '0.3.0'
+
+Ipepe/UselessInstanceVariable:
+  Description: 'Use local variable instead of instance variable that is only used within one method'
+  Enabled: true
+  VersionAdded: '0.4.0'
