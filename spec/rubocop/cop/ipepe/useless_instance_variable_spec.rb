@@ -13,7 +13,7 @@ RSpec.describe RuboCop::Cop::Ipepe::UselessInstanceVariable, :config do
         class SomethingController < BaseController
           def create
             @service = Service.new
-            ^^^^^^^^ Ipepe/UselessInstanceVariable: Use local variable instead of instance variable that's only used within one method
+            ^^^^^^^^ Ipepe/UselessInstanceVariable: Use local variable instead of instance variable for better visibility and typo protection
 
             if @service.call
               render :create, locals: { }
@@ -33,11 +33,12 @@ RSpec.describe RuboCop::Cop::Ipepe::UselessInstanceVariable, :config do
   end
 
   context "when instance variable is used across multiple methods" do
-    it "does not register an offense" do
-      expect_no_offenses(<<~RUBY)
+    it "registers an offense for cross-method usage that could use local variables" do
+      expect_offense(<<~RUBY)
         class SomethingController < BaseController
           def create
             @service = Service.new
+            ^^^^^^^^ Ipepe/UselessInstanceVariable: Use local variable instead of instance variable for better visibility and typo protection
             
             if @service.call
               render :create, locals: { }
@@ -67,7 +68,7 @@ RSpec.describe RuboCop::Cop::Ipepe::UselessInstanceVariable, :config do
         class Example
           def process
             @data = fetch_data
-            ^^^^^ Ipepe/UselessInstanceVariable: Use local variable instead of instance variable that's only used within one method
+            ^^^^^ Ipepe/UselessInstanceVariable: Use local variable instead of instance variable for better visibility and typo protection
             
             puts @data.length
           end
@@ -78,11 +79,12 @@ RSpec.describe RuboCop::Cop::Ipepe::UselessInstanceVariable, :config do
   end
 
   context "when instance variable is used in non-private methods" do
-    it "does not register an offense" do
-      expect_no_offenses(<<~RUBY)
+    it "registers an offense for cross-method usage" do
+      expect_offense(<<~RUBY)
         class Example
           def setup
             @config = load_config
+            ^^^^^^^ Ipepe/UselessInstanceVariable: Use local variable instead of instance variable for better visibility and typo protection
           end
 
           def process
