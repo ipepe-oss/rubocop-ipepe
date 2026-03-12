@@ -1,23 +1,24 @@
-require 'set'
+require "set"
 
 module RuboCop
   module Cop
     module Ipepe
       class UselessInstanceVariable < ::RuboCop::Cop::Base
-        MSG = "Use local variable instead of instance variable for better visibility and typo protection".freeze
+        MSG = "Use local variable instead of instance variable for better " \
+              "visibility and typo protection".freeze
 
         def on_ivasgn(node)
           # Get the instance variable name
           ivar_name = node.children.first
-          
+
           # Find the method that contains this assignment
           method_node = find_enclosing_method(node)
           return unless method_node
-          
+
           # Check if this instance variable could be a local variable
-          if useless_instance_variable?(ivar_name, method_node)
-            add_offense(node)
-          end
+          return unless useless_instance_variable?(ivar_name, method_node)
+
+          add_offense(node)
         end
 
         private
@@ -34,19 +35,15 @@ module RuboCop
           # Find all usage of this instance variable in the class
           ivar_usages = []
           class_node.each_descendant(:ivar, :ivasgn) do |ivar_node|
-            if ivar_node.children.first == ivar_name
-              ivar_usages << ivar_node
-            end
+            ivar_usages << ivar_node if ivar_node.children.first == ivar_name
           end
 
           # Count how many methods use this instance variable
           methods_using_ivar = Set.new
-          
+
           ivar_usages.each do |usage|
             containing_method = find_enclosing_method(usage)
-            if containing_method
-              methods_using_ivar << containing_method
-            end
+            methods_using_ivar << containing_method if containing_method
           end
 
           # Flag instance variables that are used in any methods (1 or more)

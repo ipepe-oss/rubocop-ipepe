@@ -29,7 +29,6 @@ RSpec.describe RuboCop::Cop::Ipepe::UselessInstanceVariable, :config do
         end
       RUBY
     end
-
   end
 
   context "when instance variable is used across multiple methods" do
@@ -39,7 +38,7 @@ RSpec.describe RuboCop::Cop::Ipepe::UselessInstanceVariable, :config do
           def create
             @service = Service.new
             ^^^^^^^^ Ipepe/UselessInstanceVariable: Use local variable instead of instance variable for better visibility and typo protection
-            
+
             if @service.call
               render :create, locals: { }
             else
@@ -69,13 +68,12 @@ RSpec.describe RuboCop::Cop::Ipepe::UselessInstanceVariable, :config do
           def process
             @data = fetch_data
             ^^^^^ Ipepe/UselessInstanceVariable: Use local variable instead of instance variable for better visibility and typo protection
-            
+
             puts @data.length
           end
         end
       RUBY
     end
-
   end
 
   context "when instance variable is used in non-private methods" do
